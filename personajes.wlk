@@ -24,13 +24,17 @@ object luisa {
 object mario { 
     var valorRecolectado=0
     var esFeliz= false
-    method esFeliz() = esFeliz 
+    var ultimoElemento=null
     method valorRecolectado() = valorRecolectado 
     method encontrar(elemento) {
       elemento.trabajoRecibido()
       valorRecolectado= valorRecolectado +elemento.darValor()
-      esFeliz=valorRecolectado>=50
-    } 
+      ultimoElemento=elemento
+    }
+
+    method esFeliz() {
+      return (valorRecolectado>=50) or (ultimoElemento.altura()>=10)
+    }
 }
 
 object ballesta {
