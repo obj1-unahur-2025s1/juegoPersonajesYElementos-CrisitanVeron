@@ -10,7 +10,15 @@ object floki {
     }
 }
 object luisa {
-  
+  var personajeActivo=null
+  method personajeActivo() = personajeActivo
+  method asignarPersonaje(elemento) {
+    personajeActivo= elemento
+  }
+
+  method aparece(elemento) {
+    self.personajeActivo().encontrar(elemento)
+  }
 }
 
 object mario { 
