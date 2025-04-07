@@ -3,17 +3,26 @@ object floki {
     method tipo() = "guerrero" 
     method arma() =arma 
     method encontrar(elemento) {
-      
+      if(arma.estaCargada()){
+        arma.Usar()
+        elemento.recibirAtaque(self.arma().potencia())
+      }
     }
 }
 object luisa {
   
 }
 
-object mario {
+object mario { 
+    var valorRecolectado=0
+    var esFeliz= false
+    method esFeliz() = esFeliz 
+    method valorRecolectado() = valorRecolectado 
     method encontrar(elemento) {
-      
-    }
+      elemento.trabajoRecibido()
+      valorRecolectado= valorRecolectado +elemento.darValor()
+      esFeliz=valorRecolectado>=50
+    } 
 }
 
 object ballesta {
@@ -27,7 +36,7 @@ object ballesta {
     cant_flechas= cant_flechas -1 
   }
 
-  method name() =4
+  method potencia() =4
 }
     
 object jabalina {
@@ -37,7 +46,7 @@ object jabalina {
   method Usar() {
     estaCargada=false
   }
-  method name() =30 
+  method potencia() =30 
 }
 
 object castillo {
@@ -47,7 +56,13 @@ object castillo {
 
     method recibirAtaque(potencia) {
       nivelDefensa= nivelDefensa-potencia
-    } 
+    }
+    method trabajoRecibido() {
+      nivelDefensa= 200.min(nivelDefensa+20)
+    }
+    method darValor() {
+      return nivelDefensa/5
+    }
 }
 
 object aurora {
@@ -57,7 +72,11 @@ object aurora {
 
   method recibirAtaque(potencia) {
     estaViva= potencia <10
-} 
+  }
+  method trabajoRecibido() {
+    
+  }
+  method darValor() =15 
 }
 
 object tipa {
@@ -66,5 +85,9 @@ object tipa {
   method recibirAtaque(potencia) {
     
   }
+  method trabajoRecibido() {
+    altura=altura+1
+  }
+  method darValor() = altura*2 
 }
 
